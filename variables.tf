@@ -60,6 +60,21 @@ variable "app_count" {
     description = "Number of docker containers to run"
 }
 
+variable "db_name" {
+	type = string
+    description = "Database Name"
+}
+
+variable "db_user" {
+	type = string
+    description = "Database User"
+}
+
+variable "db_password" {
+	type = string
+    description = "Database Password"
+}
+
 variable "health_check_path" {
     type = string
     description = "Health Check URL path"
