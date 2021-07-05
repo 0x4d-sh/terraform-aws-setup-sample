@@ -1,5 +1,5 @@
 resource "aws_db_subnet_group" "db_subnet_group" {
-    subnet_ids  = aws_subnet.private.*.id
+    subnet_ids  = aws_subnet.private.2.id
 }
 
 resource "aws_db_instance" "mysql" {
