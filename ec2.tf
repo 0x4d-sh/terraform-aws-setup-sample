@@ -31,7 +31,7 @@ data "template_file" "user_data" {
 resource "aws_instance" "instance" {
     ami             = data.aws_ami.ubuntu.id
     instance_type   = "t2.micro"
-    subnet_id       = aws_subnet.private.*.id[0]
+    subnet_id       = aws_subnet.private.0.id
     user_data       = "${data.template_file.user_data.rendered}"
     security_groups = [aws_security_group.alb.id]
     iam_instance_profile    = var.ec2_iam_role
