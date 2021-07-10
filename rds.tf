@@ -1,9 +1,9 @@
 resource "aws_db_subnet_group" "db_subnet_group" {
-    subnet_ids  = aws_subnet.private.2.id
+    subnet_ids  = aws_subnet.private.*.id[1]
 }
 
-resource "aws_db_instance" "mysql" {
-    identifier                = "mysql"
+resource "aws_db_instance" "wordpress" {
+    identifier                = "wordpress"
     allocated_storage         = 5
     backup_retention_period   = 2
     backup_window             = "01:00-01:30"
