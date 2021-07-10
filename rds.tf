@@ -2,7 +2,7 @@ resource "aws_db_subnet_group" "db_subnet_group" {
     subnet_ids  = aws_subnet.private.*.id[1]
 }
 
-resource "aws_db_instance" "wordpress" {
+resource "aws_db_instance" "aws_rds" {
     identifier                = "wordpress"
     allocated_storage         = 5
     backup_retention_period   = 2
