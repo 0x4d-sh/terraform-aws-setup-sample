@@ -8,12 +8,12 @@ terraform {
     }
   }
 
-  backend "s3" {
-    bucket = var.aws_s3_bucket
-    key    = "state/terraform_state.tfstate"
-    region = "ap-northeast-1"
-    profile = var.aws_iam_profile
-  }
+#   backend "s3" {
+#     bucket = var.aws_s3_bucket
+#     key    = "state/terraform_state.tfstate"
+#     region = "ap-northeast-1"
+#     profile = var.aws_iam_profile
+#   }
 }
 
 provider "aws" {
