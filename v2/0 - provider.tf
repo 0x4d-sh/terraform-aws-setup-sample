@@ -1,3 +1,5 @@
+# provider.tf | main configuration
+
 terraform {
   required_providers {
     aws = {
@@ -7,11 +9,6 @@ terraform {
   }
 }
 
-# Configure the AWS Provider
 provider "aws" {
-  region = "ap-southeast-1"
-}
-
-resource "aws_vpc" "aws_vpc" {
-    cidr_block = "10.0.0.0/16"
+  region = var.aws_region
 }
