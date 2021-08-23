@@ -12,6 +12,6 @@ provider "aws" {
   region = "ap-southeast-1"
 }
 
-resource "aws_ecs_cluster" "aws_ecs_cluster" {
-    name = "ecs_cluster"
+resource "aws_cloudformation_stack" "domain" {
+    name = "domain-stack"
 }
