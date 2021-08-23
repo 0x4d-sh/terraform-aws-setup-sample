@@ -12,5 +12,5 @@ provider "aws" {
   region = "ap-southeast-1"
 }
 
-resource "aws_cloudformation_stack" "domain" {
+resource "aws_vpc" "aws_vpc" {
 }
