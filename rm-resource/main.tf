@@ -13,4 +13,5 @@ provider "aws" {
 }
 
 resource "aws_ecs_cluster" "aws_ecs_cluster" {
+    name = "ecs_cluster"
 }
