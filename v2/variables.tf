@@ -49,3 +49,13 @@ variable "db_name" {
 	type = string
     description = "Database Name"
 }
+
+variable "app_port" {
+    type = number
+    description = "Port exposed by the docker image to redirect traffic to"
+}
+
+variable "health_check_path" {
+    type = string
+    description = "Health Check URL path"
+}
