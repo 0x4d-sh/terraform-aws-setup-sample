@@ -1,9 +1,8 @@
 resource "aws_rds_cluster" "default" {
-  count                   = var.az_count
   cluster_identifier      = "${var.app_name}-${var.app_environment}-rds"
   engine                  = "aurora-mysql"
   engine_version          = "5.7.mysql_aurora.2.03.2"
-  availability_zones      = data.aws_availability_zones.available.names[count.index]
+  availability_zones      = data.aws_availability_zones
   database_name           = var.db_name
   master_username         = var.db_user
   master_password         = var.db_password

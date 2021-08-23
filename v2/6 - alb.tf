@@ -7,7 +7,7 @@ resource "aws_alb" "application_load_balancer" {
 }
 
 resource "aws_alb_target_group" "target_group" {
-  name        = "${var.app_name}-${var.app_environment}-target-group"
+  name        = "${var.app_name}-${var.app_environment}-tg"
   port        = var.app_port
   protocol    = "HTTP"
   vpc_id      = aws_vpc.aws_vpc.id
