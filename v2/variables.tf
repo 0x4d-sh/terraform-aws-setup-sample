@@ -35,11 +35,6 @@ variable "app_environment" {
     description = "Application Environment"
 }
 
-variable "db_name" {
-	type = string
-    description = "Database Name"
-}
-
 variable "db_user" {
 	type = string
     description = "Database User"
@@ -48,4 +43,9 @@ variable "db_user" {
 variable "db_password" {
 	type = string
     description = "Database Password"
+}
+
+variable "db_name" {
+	type = string
+    description = "Database Name"
 }
