@@ -13,5 +13,4 @@ provider "aws" {
 }
 
 resource "aws_cloudformation_stack" "domain" {
-    name = "domain-stack"
 }
