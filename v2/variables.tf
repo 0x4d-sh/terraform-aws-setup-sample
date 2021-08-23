@@ -35,11 +35,6 @@ variable "app_environment" {
     description = "Application Environment"
 }
 
-variable "app_image" {
-    type = string
-    description = "Docker image to run in the ECS cluster"
-}
-
 variable "db_name" {
 	type = string
     description = "Database Name"
