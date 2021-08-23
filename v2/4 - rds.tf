@@ -1,4 +1,5 @@
 resource "aws_rds_cluster" "default" {
+  count                   = var.az_count
   cluster_identifier      = "${var.app_name}-${var.app_environment}-rds"
   engine                  = "aurora-mysql"
   engine_version          = "5.7.mysql_aurora.2.03.2"
