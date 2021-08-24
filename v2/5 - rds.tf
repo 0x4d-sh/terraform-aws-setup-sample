@@ -1,10 +1,11 @@
 resource "aws_db_subnet_group" "rds" {
-    name       = "rds"
-    subnet_ids = aws_subnet.public.*.id
+  name       = "rds"
+  subnet_ids = aws_subnet.private.*.id
 
-    tags = {
-        Name = "PostgreSQL subnet group"
-    }
+  tags = {
+    Name        = "${var.app_name}-rds-subnet"
+    Environment = var.app_environment
+  }
 }
 
 resource "aws_rds_cluster" "default" {
