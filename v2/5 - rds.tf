@@ -11,8 +11,6 @@ resource "aws_rds_cluster" "default" {
   preferred_backup_window = "07:00-09:00"
 
   vpc_security_group_ids     = [aws_security_group.alb.id]
-  allowed_security_groups = [aws_security_group.alb.id]
-  enable_audit_log = true
   enabled_cloudwatch_logs_exports = ["audit","error","general","slowquery"]
 
   tags = {
