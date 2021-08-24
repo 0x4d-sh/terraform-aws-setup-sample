@@ -10,13 +10,6 @@ resource "aws_rds_cluster" "default" {
   backup_retention_period = 30
   preferred_backup_window = "07:00-09:00"
 
-  vpc_id  = aws_vpc.aws_vpc.id
-  subnets = aws_subnet.private.*.id
-
-  replica_count           = 1
-  allowed_security_groups = [aws_security_group.alb.id]
-
-  monitoring_interval = 10
   enabled_cloudwatch_logs_exports = ["sec-dev-mgmt-domain-mysql"]
 
   tags = {
