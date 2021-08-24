@@ -11,7 +11,8 @@ resource "aws_db_subnet_group" "rds" {
 resource "aws_rds_cluster" "default" {
   cluster_identifier      = "${var.app_name}-${var.app_environment}-rds"
   engine                  = "aurora-mysql"
-  engine_version          = "5.7.mysql_aurora.2.03.2"
+  engine_mode             = "serverless"
+  enable_http_endpoint    = true  
   database_name           = var.db_name
   master_username         = var.db_user
   master_password         = var.db_password
@@ -22,6 +23,14 @@ resource "aws_rds_cluster" "default" {
   vpc_security_group_ids     = ["${aws_security_group.rds_sg.id}"]
   enabled_cloudwatch_logs_exports = ["audit","error","general","slowquery"]
 
+  scaling_configuration {
+    auto_pause               = true
+    min_capacity             = 1    
+    max_capacity             = 2
+    seconds_until_auto_pause = 300
+    timeout_action           = "ForceApplyCapacityChange"
+  }  
+  
   tags = {
     Name        = "${var.app_name}-rds"
     Environment = var.app_environment
