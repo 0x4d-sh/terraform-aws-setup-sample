@@ -1,6 +1,3 @@
-data "aws_availability_zones" "available" {
-  state = "available"
-}
 
 resource "aws_rds_cluster" "default" {
   cluster_identifier      = "${var.app_name}-${var.app_environment}-rds"
