@@ -20,7 +20,7 @@ resource "aws_rds_cluster" "default" {
   preferred_backup_window = "07:00-09:00"
 
   db_subnet_group_name    = "${aws_db_subnet_group.rds.name}"
-  vpc_security_group_ids     = ["${aws_security_group.rds_sg.id}"]
+  vpc_security_group_ids     = [aws_security_group.rds_sg.id, aws_security_group.ecs_sg.id]
 
   skip_final_snapshot     = true
   

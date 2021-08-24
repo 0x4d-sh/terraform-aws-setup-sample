@@ -43,6 +43,7 @@ resource "aws_security_group" "ecs_sg" {
 }
 
 resource "aws_security_group" "rds_sg" {
+    name        = "${var.app_name}-${var.app_environment}-rds-sg"
     vpc_id      = aws_vpc.aws_vpc.id
 
     ingress {
