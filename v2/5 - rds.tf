@@ -1,3 +1,11 @@
+resource "aws_db_subnet_group" "rds" {
+    name       = "rds"
+    subnet_ids = aws_subnet.public.*.id
+
+    tags = {
+        Name = "PostgreSQL subnet group"
+    }
+}
 
 resource "aws_rds_cluster" "default" {
   cluster_identifier      = "${var.app_name}-${var.app_environment}-rds"
@@ -10,7 +18,7 @@ resource "aws_rds_cluster" "default" {
   backup_retention_period = 30
   preferred_backup_window = "07:00-09:00"
 
-  db_subnet_group_name    = "${aws_subnet.private.0.name}"
+  db_subnet_group_name    = "${aws_db_subnet_group.rds.name}"
   vpc_security_group_ids     = ["${aws_security_group.rds_sg.id}"]
   enabled_cloudwatch_logs_exports = ["audit","error","general","slowquery"]
 
