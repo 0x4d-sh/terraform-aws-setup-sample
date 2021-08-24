@@ -10,7 +10,11 @@ resource "aws_rds_cluster" "default" {
   backup_retention_period = 30
   preferred_backup_window = "07:00-09:00"
 
-  enabled_cloudwatch_logs_exports = ["sec-dev-mgmt-domain-mysql"]
+  vpc_security_group_ids     = [aws_security_group.alb.id]
+  allowed_security_groups = [aws_security_group.alb.id]
+  enable_audit_log = true
+  enhanced_monitoring_interval = 10
+  enabled_cloudwatch_logs_exports = ["audit","error","general","slowquery"]
 
   tags = {
     Name        = "${var.app_name}-rds"
