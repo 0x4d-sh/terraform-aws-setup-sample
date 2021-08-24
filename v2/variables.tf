@@ -65,6 +65,11 @@ variable "app_port" {
     description = "Port exposed by the docker image to redirect traffic to"
 }
 
+variable "app_count" {
+    type = number
+    description = "Number of docker containers to run"
+}
+
 variable "fargate_cpu" {
     type = string
     description = "Fargate instance CPU units to provision (1 vCPU = 1024 CPU units)"
