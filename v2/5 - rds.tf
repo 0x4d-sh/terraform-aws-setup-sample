@@ -23,6 +23,8 @@ resource "aws_rds_cluster" "default" {
   vpc_security_group_ids     = ["${aws_security_group.rds_sg.id}"]
   enabled_cloudwatch_logs_exports = ["audit","error","general","slowquery"]
 
+  skip_final_snapshot     = true
+  
   scaling_configuration {
     auto_pause               = true
     min_capacity             = 1    
@@ -30,7 +32,7 @@ resource "aws_rds_cluster" "default" {
     seconds_until_auto_pause = 300
     timeout_action           = "ForceApplyCapacityChange"
   }  
-  
+
   tags = {
     Name        = "${var.app_name}-rds"
     Environment = var.app_environment
