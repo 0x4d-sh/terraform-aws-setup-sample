@@ -21,7 +21,6 @@ resource "aws_rds_cluster" "default" {
 
   db_subnet_group_name    = "${aws_db_subnet_group.rds.name}"
   vpc_security_group_ids     = ["${aws_security_group.rds_sg.id}"]
-  enabled_cloudwatch_logs_exports = ["audit","error","general","slowquery"]
 
   skip_final_snapshot     = true
   
