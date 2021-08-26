@@ -21,17 +21,11 @@ resource "aws_rds_cluster" "default" {
 
   maintenance_window      = "Mon:00:00-Mon:03:00"
   backup_window           = "03:00-06:00"
-
-
+  
   publicly_accessible     = true
   monitoring_interval     = "30"
   monitoring_role_name    = "${var.app_name}-${var.app_environment}-rds-monitoring"
   create_monitoring_role = true
-
-  tags = {
-    Name        = "${var.app_name}-${var.app_environment}-rds-monitoring"
-    Environment = "${var.app_environment}"
-  }
 
   auto_minor_version_upgrade = "30"
   performance_insights_enabled = true
@@ -42,7 +36,7 @@ resource "aws_rds_cluster" "default" {
   preferred_backup_window = "07:00-09:00"
 
   db_subnet_group_name    = "${aws_db_subnet_group.rds.name}"
-  vpc_security_group_ids     = [aws_security_group.rds_sg.id, aws_security_group.ecs_sg.id]
+  vpc_security_group_ids  = [aws_security_group.rds_sg.id, aws_security_group.ecs_sg.id]
 
   skip_final_snapshot     = true
 
