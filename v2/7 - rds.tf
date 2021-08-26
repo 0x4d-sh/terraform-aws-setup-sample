@@ -11,9 +11,9 @@ resource "aws_db_subnet_group" "rds" {
 resource "aws_rds_cluster" "default" {
   cluster_identifier      = "${var.app_name}-${var.app_environment}-rds"
 
-  database_name           = var.db_name
-  master_username         = var.db_user
-  master_password         = aws_secretsmanager_secret.database_password_secret.arn
+  # database_name           = var.db_name
+  # master_username         = var.db_user
+  # master_password         = aws_secretsmanager_secret.database_password_secret.arn
 
   db_subnet_group_name    = "${aws_db_subnet_group.rds.name}"
   vpc_security_group_ids  = [aws_security_group.rds_sg.id, aws_security_group.ecs_sg.id]
@@ -37,6 +37,8 @@ resource "aws_db_instance" "default" {
   engine_version          = "5.7.34"
   instance_class          = "db.m3"
 
+  name                    = var.db_name
+  username                = var.db_user
   password                = aws_secretsmanager_secret.database_password_secret.arn
 
   allow_major_version_upgrade = true
