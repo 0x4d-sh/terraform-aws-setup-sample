@@ -21,11 +21,11 @@ resource "aws_rds_cluster" "default" {
 
   maintenance_window      = "Mon:00:00-Mon:03:00"
   backup_window           = "03:00-06:00"
-  
+
   publicly_accessible     = true
   monitoring_interval     = "30"
-  monitoring_role_name    = "${var.app_name}-${var.app_environment}-rds-monitoring"
-  create_monitoring_role = true
+  monitoring_role_name    = "AWSServiceRoleForRDS"
+  create_monitoring_role  = false
 
   auto_minor_version_upgrade = "30"
   performance_insights_enabled = true
@@ -44,23 +44,4 @@ resource "aws_rds_cluster" "default" {
     Name        = "${var.app_name}-rds"
     Environment = var.app_environment
   }
-}
-
-resource "aws_db_instance" "bar" {
-  allocated_storage = 10
-  engine            = "mysql"
-  engine_version    = "5.6.21"
-  instance_class    = "db.t2.micro"
-  name              = "baz"
-  password          = "barbarbarbar"
-  username          = "foo"
-
-  maintenance_window      = "Fri:09:00-Fri:09:30"
-  backup_retention_period = 0
-  parameter_group_name    = "default.mysql5.6"
-}
-
-resource "aws_db_snapshot" "test" {
-  db_instance_identifier = aws_db_instance.bar.id
-  db_snapshot_identifier = "testsnapshot1234"
 }
