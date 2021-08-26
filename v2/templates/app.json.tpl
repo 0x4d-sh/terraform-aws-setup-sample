@@ -49,10 +49,10 @@
           "value": "1.19.1"
       },{
           "name": "SIMPLESAML_BASEURL",
-          "value": ${sso_ssp}
+          "value": "${sso_ssp}"
       },{
           "name": "OKTA_SSO_METADATA",
-          "value": ${sso_metadata}
+          "value": "${sso_metadata}"
       }
     ]
   }
