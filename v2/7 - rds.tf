@@ -38,14 +38,13 @@ resource "aws_db_instance" "default" {
   instance_class          = "db.m3"
 
   allow_major_version_upgrade = true
-  allow_minor_version_upgrade = true
 
   maintenance_window      = "Mon:00:00-Mon:03:00"
   backup_window           = "03:00-06:00"
 
   publicly_accessible     = true
   monitoring_interval     = "30"
-  monitoring_role_name    = data.aws_iam_role.rds_monitoring_role.arn
+  monitoring_role_arn     = data.aws_iam_role.rds_monitoring_role.arn
 
   performance_insights_enabled          = true
   performance_insights_retention_period = 30
