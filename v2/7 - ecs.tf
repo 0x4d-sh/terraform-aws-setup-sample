@@ -12,9 +12,15 @@ data "template_file" "in_app" {
     app_environment = var.app_environment
     app_image       = var.app_image
     app_port        = var.app_port
+    db_url          = var.db_url
+    db_name         = var.db_name
+    db_user         = var.db_user 
+    db_password     = var.db_password
     fargate_cpu     = var.fargate_cpu
     fargate_memory  = var.fargate_memory
     aws_region      = var.aws_region
+    sso_ssp         = var.sso_ssp
+    sso_metadata    = var.sso_metadata
   }
 }
 

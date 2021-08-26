@@ -25,14 +25,14 @@ variable "cidr_block" {
     description = "CIDR block IP range"
 }
 
-variable "app_name" {
-    type = string
-    description = "Application Name"
+variable "db_url" {
+	type = string
+    description = "Database Url"
 }
 
-variable "app_environment" {
-    type = string
-    description = "Application Environment"
+variable "db_name" {
+	type = string
+    description = "Database Name"
 }
 
 variable "db_user" {
@@ -45,14 +45,19 @@ variable "db_password" {
     description = "Database Password"
 }
 
-variable "db_name" {
-	type = string
-    description = "Database Name"
-}
-
 variable "health_check_path" {
     type = string
     description = "Health Check URL path"
+}
+
+variable "app_name" {
+    type = string
+    description = "Application Name"
+}
+
+variable "app_environment" {
+    type = string
+    description = "Application Environment"
 }
 
 variable "app_image" {
@@ -78,4 +83,14 @@ variable "fargate_cpu" {
 variable "fargate_memory" {
     type = string
     description = "Fargate instance memory to provision (in MiB)"
+}
+
+variable "sso_ssp" {
+	type = string
+    description = "SSP URL"
+}
+
+variable "sso_metadata" {
+	type = string
+    description = "IdP Metadata URL"
 }
