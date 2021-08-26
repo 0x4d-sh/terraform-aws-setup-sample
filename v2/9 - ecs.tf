@@ -12,10 +12,10 @@ data "template_file" "in_app" {
     app_environment = var.app_environment
     app_image       = var.app_image
     app_port        = var.app_port
-    db_url          = var.db_url
+    db_url          = aws_rds_cluster.default.endpoint
     db_name         = var.db_name
     db_user         = var.db_user
-    db_password     = var.db_password
+    db_password     = aws_secretsmanager_secret.database_password_secret.arn
     fargate_cpu     = var.fargate_cpu
     fargate_memory  = var.fargate_memory
     aws_region      = var.aws_region
@@ -26,7 +26,7 @@ data "template_file" "in_app" {
 
 resource "aws_ecs_task_definition" "app" {
   family                   = "${var.app_name}-${var.app_environment}-task"
-  execution_role_arn       = var.ecs_task_execution_arn
+  execution_role_arn       = data.aws_iam_role.ecs_task_role.arn
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu                      = var.fargate_cpu

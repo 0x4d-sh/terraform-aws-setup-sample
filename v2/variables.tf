@@ -10,9 +10,9 @@ variable "ec2_iam_role" {
     description = "EC2 IAM role name"
 }
 
-variable "ecs_task_execution_arn" {
+variable "ecs_task_role" {
     type = string
-    description = "ECS task execution ARN"
+    description = "ECS task execution role name"
 }
 
 variable "az_count" {
@@ -38,11 +38,6 @@ variable "db_name" {
 variable "db_user" {
 	type = string
     description = "Database User"
-}
-
-variable "db_password" {
-	type = string
-    description = "Database Password"
 }
 
 variable "health_check_path" {
