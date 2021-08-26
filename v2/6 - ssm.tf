@@ -3,16 +3,16 @@ resource "random_password" "database_password" {
   special = false
 }
 
-resource "aws_secretsmanager_secret" "database_password_secret" {
+resource "aws_secretsmanager_secret" "secret_location" {
   name = "${var.app_name}/${var.app_environment}/database/password/master"
 }
 
-resource "aws_secretsmanager_secret_version" "database_password_secret_version" {
+resource "aws_secretsmanager_secret_version" "default" {
   secret_id     = aws_secretsmanager_secret.database_password_secret.id
   secret_string = random_password.database_password.result
 }
 
-resource "aws_iam_role_policy" "password_policy_secretsmanager" {
+resource "aws_iam_role_policy" "secret_policy" {
   name = "password-policy-secretsmanager"
   role = data.aws_iam_role.ecs_task_role.id
 
@@ -31,6 +31,5 @@ resource "aws_iam_role_policy" "password_policy_secretsmanager" {
       }
     ]
   }
-  EOF
-  
+  EOF 
 }

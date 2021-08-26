@@ -13,7 +13,7 @@ resource "aws_rds_cluster" "default" {
 
   # database_name           = var.db_name
   master_username         = var.db_user
-  master_password         = aws_secretsmanager_secret.database_password_secret.arn
+  master_password         = aws_secretsmanager_secret_version.default.secret_string
 
   db_subnet_group_name    = "${aws_db_subnet_group.rds.name}"
   vpc_security_group_ids  = [aws_security_group.rds_sg.id, aws_security_group.ecs_sg.id]

@@ -15,7 +15,7 @@ data "template_file" "in_app" {
     db_url          = aws_rds_cluster.default.endpoint
     db_name         = var.db_name
     db_user         = var.db_user
-    db_password     = aws_secretsmanager_secret.database_password_secret.arn
+    db_password     = aws_secretsmanager_secret_version.default.secret_string
     fargate_cpu     = var.fargate_cpu
     fargate_memory  = var.fargate_memory
     aws_region      = var.aws_region
