@@ -12,7 +12,7 @@ resource "aws_rds_cluster" "default" {
   cluster_identifier      = "${var.app_name}-${var.app_environment}-rds"
 
   # database_name           = var.db_name
-  # master_username         = var.db_user
+  master_username         = var.db_user
   # master_password         = aws_secretsmanager_secret.database_password_secret.arn
 
   db_subnet_group_name    = "${aws_db_subnet_group.rds.name}"
@@ -35,7 +35,7 @@ resource "aws_db_instance" "default" {
 
   engine                  = "mysql"
   engine_version          = "5.7.34"
-  instance_class          = "db.m3"
+  instance_class          = "db.m5.large"
 
   name                    = var.db_name
   username                = var.db_user
