@@ -34,16 +34,16 @@
           "value": ""
       },{
           "name": "DOMAINMOD_DATABASE_HOST",
-          "value": ${db_url}
+          "value": "${db_url}"
       },{
           "name": "DOMAINMOD_DATABASE",
-          "value": ${db_name}
+          "value": "${db_name}"
       },{
           "name": "DOMAINMOD_USER",
-          "value": ${db_user}
+          "value": "${db_user}"
       },{
           "name": "DOMAINMOD_PASSWORD",
-          "value": ${db_password}
+          "value": "${db_password}"
       },{
           "name": "SIMPLESAMLPHP_VERSION",
           "value": "1.19.1"
