@@ -39,7 +39,7 @@ resource "aws_db_instance" "default" {
 
   name                    = var.db_name
   username                = var.db_user
-  password                = aws_secretsmanager_secret.database_password_secret.arn
+  password                = aws_secretsmanager_secret_version.default.secret_string
 
   allow_major_version_upgrade = true
 

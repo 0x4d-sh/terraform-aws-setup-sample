@@ -8,7 +8,7 @@ resource "aws_secretsmanager_secret" "secret_location" {
 }
 
 resource "aws_secretsmanager_secret_version" "default" {
-  secret_id     = aws_secretsmanager_secret.database_password_secret.id
+  secret_id     = aws_secretsmanager_secret.secret_location.id
   secret_string = random_password.database_password.result
 }
 
@@ -26,7 +26,7 @@ resource "aws_iam_role_policy" "secret_policy" {
         ],
         "Effect": "Allow",
         "Resource": [
-          "${aws_secretsmanager_secret.database_password_secret.arn}"
+          "${aws_secretsmanager_secret.secret_location.arn}"
         ]
       }
     ]
