@@ -37,6 +37,8 @@ resource "aws_db_instance" "default" {
   engine_version          = "5.7.34"
   instance_class          = "db.m3"
 
+  password                = aws_secretsmanager_secret.database_password_secret.arn
+
   allow_major_version_upgrade = true
 
   maintenance_window      = "Mon:00:00-Mon:03:00"
