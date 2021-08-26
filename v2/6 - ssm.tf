@@ -14,7 +14,7 @@ resource "aws_secretsmanager_secret_version" "database_password_secret_version" 
 
 resource "aws_iam_role_policy" "password_policy_secretsmanager" {
   name = "password-policy-secretsmanager"
-  role = aws_iam_role.ecs_task_execution_role.id
+  role = data.aws_iam_role.ecs_task_execution_role.id
 
   policy = <<-EOF
   {
