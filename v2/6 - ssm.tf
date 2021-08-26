@@ -4,7 +4,7 @@ resource "random_password" "database_password" {
 }
 
 resource "aws_secretsmanager_secret" "secret_location" {
-  name = "${var.app_name}/${var.app_environment}/database/password/master"
+  name = "${var.app_name}/${var.app_environment}/database/password"
 }
 
 resource "aws_secretsmanager_secret_version" "default" {
