@@ -14,7 +14,7 @@ resource "aws_rds_cluster" "default" {
   engine_version          = "5.7.34"
   database_name           = var.db_name
   master_username         = var.db_user
-  master_password         = var.db_password
+  master_password         = aws_secretsmanager_secret.database_password_secret.arn
 
   allocated_storage       = 100
   max_allocated_storage   = 200
