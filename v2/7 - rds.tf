@@ -51,7 +51,7 @@ resource "aws_db_instance" "default" {
   monitoring_role_arn     = data.aws_iam_role.rds_monitoring_role.arn
 
   performance_insights_enabled          = true
-  performance_insights_retention_period = 30
+  performance_insights_retention_period = 7
   enabled_cloudwatch_logs_exports       = ["audit", "error", "general", "slowquery"]
 
   tags = {
