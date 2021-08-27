@@ -3,5 +3,5 @@ data "aws_iam_role" "ecs_task_role" {
 }
 
 data "aws_iam_role" "rds_monitoring_role" {
-  name = "AWSServiceRoleForRDS"
+  name = "rds-monitoring-role"
 }
