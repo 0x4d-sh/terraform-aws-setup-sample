@@ -11,7 +11,7 @@ resource "aws_db_subnet_group" "rds" {
 resource "aws_rds_cluster" "default" {
   cluster_identifier      = "${var.app_name}-${var.app_environment}-rds"
 
-  # database_name           = var.db_name
+  database_name           = var.db_name
   master_username         = var.db_user
   master_password         = aws_secretsmanager_secret_version.default.secret_string
 
@@ -21,6 +21,8 @@ resource "aws_rds_cluster" "default" {
   backup_retention_period = 30
   preferred_backup_window = "07:00-09:00"
 
+  allow_major_version_upgrade = true
+
   skip_final_snapshot     = true
 
   tags = {
@@ -29,23 +31,17 @@ resource "aws_rds_cluster" "default" {
   }
 }
 
-resource "aws_db_instance" "default" {
-  allocated_storage       = 20
-  max_allocated_storage   = 200
+resource "aws_rds_cluster_instance" "default" {
+  count              = 1
+  identifier         = "${var.app_name}-${var.app_environment}-rds-${count.index}"
+  
 
   engine                  = "mysql"
   engine_version          = "5.7.34"
   instance_class          = "db.m5.large"
-
-  name                    = var.db_name
-  username                = var.db_user
-  password                = aws_secretsmanager_secret_version.default.secret_string
-
-  allow_major_version_upgrade = true
-
-  maintenance_window      = "Mon:00:00-Mon:03:00"
-  backup_window           = "03:00-06:00"
-
+  allocated_storage       = 20
+  max_allocated_storage   = 200
+  
   publicly_accessible     = true
   monitoring_interval     = "30"
   monitoring_role_arn     = data.aws_iam_role.rds_monitoring_role.arn
