@@ -20,18 +20,7 @@ resource "aws_rds_cluster" "default" {
 
   db_subnet_group_name    = "${aws_db_subnet_group.rds.name}"
   vpc_security_group_ids  = [aws_security_group.rds_sg.id, aws_security_group.ecs_sg.id]
-
-  allocated_storage       = 20
-  max_allocated_storage   = 200
-
-  publicly_accessible     = true
-  monitoring_interval     = "30"
-  monitoring_role_arn     = data.aws_iam_role.rds_monitoring_role.arn
-
-  performance_insights_enabled          = true
-  performance_insights_retention_period = 7
-  enabled_cloudwatch_logs_exports       = ["audit", "error", "general", "slowquery"]
-
+  
   backup_retention_period = 30
   preferred_backup_window = "07:00-09:00"
 
@@ -54,8 +43,15 @@ resource "aws_rds_cluster_instance" "default" {
   engine             = aws_rds_cluster.default.engine
   engine_version     = aws_rds_cluster.default.engine_version
 
+  publicly_accessible     = true
+  monitoring_interval     = 30
+  monitoring_role_arn     = data.aws_iam_role.rds_monitoring_role.arn
+
+  performance_insights_enabled          = true
+  enabled_cloudwatch_logs_exports       = ["audit", "error", "general", "slowquery"]
+
   tags = {
-    Name        = "${var.app_name}-rds-${count.index}"
+    Name        = "${var.app_name}-rds"
     Environment = var.app_environment
   }
 }
