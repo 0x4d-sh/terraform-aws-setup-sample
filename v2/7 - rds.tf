@@ -11,7 +11,7 @@ resource "aws_db_subnet_group" "rds" {
 resource "aws_rds_cluster" "default" {
   cluster_identifier      = "${var.app_name}-${var.app_environment}-rds"
 
-  engine                  = "mysql"
+  engine                  = "aurora-mysql"
   engine_version          = "5.7.34"
 
   database_name           = var.db_name
@@ -42,7 +42,7 @@ resource "aws_rds_cluster_instance" "default" {
   instance_class     = "db.m5.large"
   engine             = aws_rds_cluster.default.engine
   engine_version     = aws_rds_cluster.default.engine_version
-  
+
   allocated_storage       = 20
   max_allocated_storage   = 200
   
