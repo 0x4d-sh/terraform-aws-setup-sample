@@ -26,6 +26,8 @@ resource "aws_rds_cluster" "default" {
 
   allow_major_version_upgrade = true
 
+  enabled_cloudwatch_logs_exports       = ["audit", "error", "general", "slowquery"]
+  
   skip_final_snapshot     = true
 
   tags = {
@@ -48,7 +50,6 @@ resource "aws_rds_cluster_instance" "default" {
   monitoring_role_arn     = data.aws_iam_role.rds_monitoring_role.arn
 
   performance_insights_enabled          = true
-  enabled_cloudwatch_logs_exports       = ["audit", "error", "general", "slowquery"]
 
   tags = {
     Name        = "${var.app_name}-rds"
