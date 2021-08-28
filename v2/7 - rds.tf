@@ -27,7 +27,6 @@ resource "aws_rds_cluster" "default" {
   enabled_cloudwatch_logs_exports       = ["audit", "error", "general", "slowquery"]
   
   skip_final_snapshot     = true
-  allow_minor_version_upgrade = true
   allow_major_version_upgrade = true
   
   tags = {
