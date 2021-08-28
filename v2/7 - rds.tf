@@ -12,7 +12,7 @@ resource "aws_rds_cluster" "default" {
   cluster_identifier      = "${var.app_name}-${var.app_environment}-rds"
 
   engine                  = "aurora-mysql"
-  engine_version          = "5.7.34"
+  engine_version          = "5.7"
 
   database_name           = var.db_name
   master_username         = var.db_user
@@ -24,12 +24,12 @@ resource "aws_rds_cluster" "default" {
   backup_retention_period = 30
   preferred_backup_window = "07:00-09:00"
 
-  allow_major_version_upgrade = true
-
   enabled_cloudwatch_logs_exports       = ["audit", "error", "general", "slowquery"]
   
   skip_final_snapshot     = true
-
+  allow_minor_version_upgrade = true
+  allow_major_version_upgrade = true
+  
   tags = {
     Name        = "${var.app_name}-rds"
     Environment = var.app_environment
