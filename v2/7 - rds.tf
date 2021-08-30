@@ -41,7 +41,7 @@ resource "aws_rds_cluster_instance" "default" {
   identifier         = "${var.app_name}-${var.app_environment}-rds-${count.index}"
   cluster_identifier = aws_rds_cluster.default.id
   
-  instance_class     = "db.m5"
+  instance_class     = "db.r5.large"
   engine             = aws_rds_cluster.default.engine
   engine_version     = aws_rds_cluster.default.engine_version
 
